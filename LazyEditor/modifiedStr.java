@@ -4,8 +4,8 @@ package LazyEditor;
 
 public class modifiedStr {
 	
-	private int flag; // flag degisken 0 ise bu stringte uygun ![...](...) veya [....](...)  bulunmamaktadir
-	private String sentence; // yaniltici parantezlerden arindirilimis yeni string 
+	private int flag; 
+	private String sentence; 
 	
 	
     public modifiedStr(){
