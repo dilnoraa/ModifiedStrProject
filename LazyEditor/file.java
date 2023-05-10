@@ -29,12 +29,10 @@ public class file {
         BufferedReader reader_input = new BufferedReader(fileReader);
 
         String line;
-        String lineCombined = ""; // birden fazla satiri birlestirmek için
-        // kullanilan degisken
+        String lineCombined = ""; 
         int lineFully = 0;
 
         while ((line = reader_input.readLine()) != null || lineFully == 1) {
-
             if (line != null) {
                 if (line.trim().length() == 0) { 
 
@@ -58,7 +56,6 @@ public class file {
                 writer_output.write("\n\n");
                 lineFully = 0;
             }
-
         }
 
         reader_input.close();
@@ -69,8 +66,6 @@ public class file {
     private static String line_translate(String lineCombined) {
 
         lineCombined = functionParagraph(lineCombined); 
-        // eklenir
-
         String newString = null;
 
         modifiedStr changingString;
@@ -97,14 +92,12 @@ public class file {
 
             newString = fonksiyon_stil_isaretciler(lineCombined, "![");
             newString = functionImage(newString);
-
             lineCombined = newString;
 
         } else if (flagForLink == 1) { 
 
             newString = fonksiyon_stil_isaretciler(lineCombined, "[");
             newString = functionLink(newString);
-
             lineCombined = newString;
         } else { 
             newString = fonksiyon_isaret_degistir(lineCombined);
@@ -133,7 +126,7 @@ public class file {
         if (yeniString.contains("_")) {
             yeniString = fonksiyonReplace(yeniString, "_", "<em>");
 
-        } // buraya istediðimiz zaman yeni bir iþaretçi ekleyebiliriz
+        } 
 
         return yeniString;
     }
@@ -328,9 +321,7 @@ public class file {
             new_line = line.substring(0, index_resim1);
             new_line += "<img src=\"";
             new_line += image_url;
-
             new_line += "\" alt=\"";
-
             new_line += resim_alternatif_isim;
             new_line += "\">";
             new_line += parca.substring(index_url2 + 1);
@@ -347,34 +338,24 @@ public class file {
     private static String functionSlash(String line, String degisen) {
 
         int index1, index2;
-
         index1 = line.indexOf(degisen);
-
         index2 = line.indexOf(degisen, index1 + 1);
-
         String yeni_string = null;
 
         if (index1 > 0) {
             yeni_string = line.substring(0, index1);
-
         }
 
         yeni_string += line.substring(index1, index2 + 1);
         yeni_string += "/";
-
         yeni_string += line.substring(index2 + 1);
         String yeni_parca = null;
-
         if (yeni_string.length() > index2 + 4) 
-           
             yeni_parca = yeni_string.substring(index2 + 2);
-
         if (yeni_parca.length() > 5 && yeni_parca.contains(degisen)) {
             yeni_string = yeni_string.substring(0, index2 + 2);
-
             yeni_string += functionSlash(yeni_parca, degisen); // recursive
         }
-
         return yeni_string;
 
     }
